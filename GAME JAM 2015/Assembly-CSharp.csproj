@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\DoorBehaviour.cs" />
      <Compile Include="Assets\Scripts\GLOBAL_FLAGS.cs" />
      <Compile Include="Assets\Scripts\Grabbable.cs" />
+     <Compile Include="Assets\Scripts\GunBehaviour.cs" />
      <Compile Include="Assets\Scripts\InitialLevelLoad.cs" />
      <Compile Include="Assets\Scripts\PersistantPlayer.cs" />
      <Compile Include="Assets\Scripts\Room Event handlers\Room_01_Event_Handler.cs" />

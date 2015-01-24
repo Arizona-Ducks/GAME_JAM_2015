@@ -92,68 +92,68 @@ public class DoorBehaviour : MonoBehaviour
             {
                 Debug.Log(gameObject.name);
             }
-                
-            //check if fully closed/opened; else, continue motion
-            if (isClosing)
+        }  
+        //check if fully closed/opened; else, continue motion
+        if (isClosing)
+        {
+            if (currentYRotation == ClosedYRotation)
             {
-                if (currentYRotation == ClosedYRotation)
-                {
-                    isClosing = false;
-                    isOpened = false;
-                    //player.GetComponent<CharacterMotor>().enabled = true;
-                }
-                else
-                {
-                    //if door is too close to player
-                    if (Vector3.Distance(doorTransform.FindChild("Door").transform.position, player.position) <= 1.25f)
-                    {
-                    }
-                    else
-                    {
-                        if (currentYRotation - DoorOpenSpeed < ClosedYRotation)
-                        {
-                            doorTransform.Rotate(0, -(currentYRotation - ClosedYRotation), 0);
-                            currentYRotation = ClosedYRotation;
-                        }
-                        else
-                        {
-                            doorTransform.Rotate(0, -DoorOpenSpeed, 0);
-                            currentYRotation -= DoorOpenSpeed;
-                        }
-                    }
-                }
+                isClosing = false;
+                isOpened = false;
+                //player.GetComponent<CharacterMotor>().enabled = true;
             }
-            else if (isOpenning)
+            else
             {
-                if (currentYRotation == OpenedYRotation)
+                //if door is too close to player
+                if (Vector3.Distance(doorTransform.FindChild("Door").transform.position, player.position) <= 1.25f)
                 {
-                    isOpenning = false;
-                    isOpened = true;
-                    //player.GetComponent<CharacterMotor>().enabled = true;
                 }
                 else
                 {
-                    //if door is too close to player
-                    if (Vector3.Distance(doorTransform.FindChild("Door").transform.position, player.position) <= 1.25f)
+                    if (currentYRotation - DoorOpenSpeed < ClosedYRotation)
                     {
+                        doorTransform.Rotate(0, -(currentYRotation - ClosedYRotation), 0);
+                        currentYRotation = ClosedYRotation;
                     }
                     else
                     {
-                        if (currentYRotation + DoorOpenSpeed > OpenedYRotation)
-                        {
-                            doorTransform.Rotate(0, (OpenedYRotation - currentYRotation), 0);
-                            currentYRotation = OpenedYRotation;
-                        }
-                        else
-                        {
-                            doorTransform.Rotate(0, DoorOpenSpeed, 0);
-                            currentYRotation += DoorOpenSpeed;
-                        }
+                        doorTransform.Rotate(0, -DoorOpenSpeed, 0);
+                        currentYRotation -= DoorOpenSpeed;
                     }
-
                 }
             }
         }
+        else if (isOpenning)
+        {
+            if (currentYRotation == OpenedYRotation)
+            {
+                isOpenning = false;
+                isOpened = true;
+                //player.GetComponent<CharacterMotor>().enabled = true;
+            }
+            else
+            {
+                //if door is too close to player
+                if (Vector3.Distance(doorTransform.FindChild("Door").transform.position, player.position) <= 1.25f)
+                {
+                }
+                else
+                {
+                    if (currentYRotation + DoorOpenSpeed > OpenedYRotation)
+                    {
+                        doorTransform.Rotate(0, (OpenedYRotation - currentYRotation), 0);
+                        currentYRotation = OpenedYRotation;
+                    }
+                    else
+                    {
+                        doorTransform.Rotate(0, DoorOpenSpeed, 0);
+                        currentYRotation += DoorOpenSpeed;
+                    }
+                }
+
+            }
+        }
+
     }
 
     public void OpenDoor()

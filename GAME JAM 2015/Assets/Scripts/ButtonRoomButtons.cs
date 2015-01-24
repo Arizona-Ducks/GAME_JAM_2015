@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ButtonRoomButtons : MonoBehaviour {
 
+    protected Animator animator;
     public GameObject trigger;
     public GameObject door;
 
@@ -12,6 +13,8 @@ public class ButtonRoomButtons : MonoBehaviour {
 	void Start () 
     {
         doorB = door.GetComponent<DoorBehaviour>();
+        animator = GetComponent<Animator>();
+        animator.SetBool("Pressed", false);
 	}
 	
 	// Update is called once per frame
@@ -25,11 +28,19 @@ public class ButtonRoomButtons : MonoBehaviour {
         {
             //disable trigger script grabbable
             //open door
-            trigger.GetComponent<Grabbable>().SetUngrabbable();
+            //trigger.GetComponent<Grabbable>().SetUngrabbable();
+            animator.SetBool("Pressed", true);
 
             doorB.OpenDoor();
             doorB.UnlockDoor();
 
         }
+    }
+
+    void OnCollisionExit(Collision col)
+    {
+        doorB.CloseDoor();
+        doorB.LockDoor();
+        animator.SetBool("Pressed", false);
     }
 }

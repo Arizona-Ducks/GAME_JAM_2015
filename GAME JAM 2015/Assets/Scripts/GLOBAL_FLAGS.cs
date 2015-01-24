@@ -6,7 +6,7 @@ public class GLOBAL_FLAGS : MonoBehaviour
     //All flag / global variables will be store in this script attached to the player.
     
     //GLOBAL
-    public bool HAS_THE_GEM = false;
+    public bool HAS_PICKUP_THE_GUN = false;
     
     //Room_01 (firstRoom)
     public bool IS_THE_NOTE_MISSING = false;

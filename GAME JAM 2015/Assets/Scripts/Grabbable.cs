@@ -67,6 +67,7 @@ public class Grabbable : MonoBehaviour {
             if (isGrabbed)
             {
                 gameObject.transform.Translate(0.2f - gameObject.transform.localPosition.x, 0 - gameObject.transform.localPosition.y, 1.5f - gameObject.transform.localPosition.z, player.FindChild("Main Camera"));
+                gameObject.transform.rotation = player.FindChild("Main Camera").transform.rotation * new Quaternion(-0.258819045f, 0, 0, 0.965925826f);
             }
         }
         else

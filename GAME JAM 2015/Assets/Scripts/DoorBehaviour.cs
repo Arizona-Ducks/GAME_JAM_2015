@@ -57,7 +57,7 @@ public class DoorBehaviour : MonoBehaviour
             //Set Door in motion. If already in motion, set it in other direction.
             if (Input.GetAxis("Action") > 0 && !isActionStillPressed  && Vector3.Distance(doorTransform.position, player.position) < 3.5f && doorTransform.FindChild("Door").gameObject.collider.Raycast(playerLookRay, out hitInfo, 10))
             {
-                Debug.Log(Vector3.Distance(doorTransform.position, player.position));
+                //Debug.Log(Vector3.Distance(doorTransform.position, player.position));
 
                 cooldown = DOOR_COOLDOWN;
                 isActionStillPressed = true;

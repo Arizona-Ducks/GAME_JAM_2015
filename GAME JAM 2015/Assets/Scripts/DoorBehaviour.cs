@@ -88,6 +88,7 @@ public class DoorBehaviour : MonoBehaviour
                     {
                         isClosing = true;
                         isOpened = false;
+                        doorOpen.Play();
                     }
                     else//isClosed
                     {

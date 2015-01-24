@@ -10,6 +10,7 @@ public class Room_02_Event_Handler : MonoBehaviour {
     void Start()
     {
         flags = GameObject.Find("First Person Duck Controller").GetComponent<GLOBAL_FLAGS>();
+        flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED = 0;
     }
 	
 	// Update is called once per frame

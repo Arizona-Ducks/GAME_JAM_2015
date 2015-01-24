@@ -50,6 +50,9 @@ public class DoorBehaviour : MonoBehaviour
 	// Update is called once per frame
     void Update()
     {
+        Ray playerLookRay = new Ray(player.FindChild("Main Camera").position, player.FindChild("Main Camera").forward);
+        RaycastHit hitInfo;
+
         if (isActionStillPressed && Input.GetAxis("Action") <= 0)
             isActionStillPressed = false;
 
@@ -57,8 +60,6 @@ public class DoorBehaviour : MonoBehaviour
             cooldown -= Time.deltaTime;
         else if (!isLocked)
         {
-            Ray playerLookRay = new Ray(player.FindChild("Main Camera").position, player.FindChild("Main Camera").forward);
-            RaycastHit hitInfo;
             //Debug.DrawRay(player.position, player.forward);
 
             try
@@ -76,23 +77,24 @@ public class DoorBehaviour : MonoBehaviour
                     {
                         isClosing = false;
                         isOpenning = true;
-                        doorClose.Play();
+                        doorOpen.Play(); 
                     }
                     else if (isOpenning)
                     {
                         isClosing = true;
                         isOpenning = false;
-                        doorOpen.Play();
+                        doorOpen.Play(); 
                     }
                     else if (isOpened)
                     {
                         isClosing = true;
                         isOpened = false;
-                        doorOpen.Play();
+                        doorOpen.Play(); 
                     }
                     else//isClosed
                     {
                         isOpenning = true;
+                        doorOpen.Play(); 
                     }
 
                 }
@@ -102,6 +104,12 @@ public class DoorBehaviour : MonoBehaviour
                 Debug.Log(gameObject.name);
             }
         }  
+        else if (Input.GetAxis("Action") > 0 && !isActionStillPressed && Vector3.Distance(doorTransform.position, player.position) < 3.5f && doorTransform.FindChild("Door").gameObject.collider.Raycast(playerLookRay, out hitInfo, 10))
+        {
+            //play locked sound
+            doorLock.Play();
+        }
+
         //check if fully closed/opened; else, continue motion
         if (isClosing)
         {
@@ -109,6 +117,7 @@ public class DoorBehaviour : MonoBehaviour
             {
                 isClosing = false;
                 isOpened = false;
+                doorClose.Play();
                 //player.GetComponent<CharacterMotor>().enabled = true;
             }
             else

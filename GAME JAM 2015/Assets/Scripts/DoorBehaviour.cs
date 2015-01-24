@@ -3,6 +3,9 @@ using System.Collections;
 
 public class DoorBehaviour : MonoBehaviour 
 {
+    //Audio
+    AudioSource doorOpen, doorClose, doorLock;
+    /// 
     public float ClosedYRotation = 0;
     public float OpenedYRotation = 90;
     public bool StartOpened = false;
@@ -21,6 +24,9 @@ public class DoorBehaviour : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
+        doorOpen = gameObject.transform.FindChild("doorOpen").transform.GetComponent<AudioSource>();
+        doorClose = gameObject.transform.FindChild("doorClose").transform.GetComponent<AudioSource>();
+        doorLock = gameObject.transform.FindChild("doorLock").transform.GetComponent<AudioSource>();
         isClosing = isOpenning = false;
         isOpened = StartOpened;
         doorTransform = gameObject.transform;
@@ -70,11 +76,13 @@ public class DoorBehaviour : MonoBehaviour
                     {
                         isClosing = false;
                         isOpenning = true;
+                        doorClose.Play();
                     }
                     else if (isOpenning)
                     {
                         isClosing = true;
                         isOpenning = false;
+                        doorOpen.Play();
                     }
                     else if (isOpened)
                     {

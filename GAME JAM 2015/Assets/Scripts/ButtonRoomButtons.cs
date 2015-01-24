@@ -3,22 +3,22 @@ using System.Collections;
 
 public class ButtonRoomButtons : MonoBehaviour {
 
-    protected Animator animator;
-    public GameObject trigger;
-    public GameObject door;
+    GLOBAL_FLAGS flags;
 
-    DoorBehaviour doorB;
+    protected Animator animator;
 
 	// Use this for initialization
 	void Start () 
     {
-        doorB = door.GetComponent<DoorBehaviour>();
+        flags = GameObject.Find("First Person Duck Controller").GetComponent<GLOBAL_FLAGS>();
+
         animator = GetComponent<Animator>();
         animator.SetBool("Pressed", false);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 	
 	}
 
@@ -26,21 +26,18 @@ public class ButtonRoomButtons : MonoBehaviour {
     {
         if (col.gameObject.tag == "Button Trigger")
         {
-            //disable trigger script grabbable
-            //open door
-            //trigger.GetComponent<Grabbable>().SetUngrabbable();
-            animator.SetBool("Pressed", true);
+            //Update globalflags
+            flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED++;
 
-            doorB.OpenDoor();
-            doorB.UnlockDoor();
+            animator.SetBool("Pressed", true);
 
         }
     }
 
     void OnCollisionExit(Collision col)
     {
-        doorB.CloseDoor();
-        doorB.LockDoor();
+        //Update globalflags
+        flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED--;
         animator.SetBool("Pressed", false);
     }
 }

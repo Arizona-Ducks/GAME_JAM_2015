@@ -3,9 +3,15 @@ using System.Collections;
 
 public class ButtonRoomButtons : MonoBehaviour {
 
+    public GameObject trigger;
+    public GameObject door;
+
+    DoorBehaviour doorB;
+
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+    {
+        doorB = door.GetComponent<DoorBehaviour>();
 	}
 	
 	// Update is called once per frame
@@ -17,7 +23,13 @@ public class ButtonRoomButtons : MonoBehaviour {
     {
         if (col.gameObject.tag == "Button Trigger")
         {
-            Debug.Log("Button Pressed!");
+            //disable trigger script grabbable
+            //open door
+            trigger.GetComponent<Grabbable>().SetUngrabbable();
+
+            doorB.OpenDoor();
+            doorB.UnlockDoor();
+
         }
     }
 }

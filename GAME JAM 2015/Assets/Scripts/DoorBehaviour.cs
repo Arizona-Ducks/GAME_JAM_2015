@@ -7,6 +7,7 @@ public class DoorBehaviour : MonoBehaviour
     public float OpenedYRotation = 90;
     public bool StartOpened = false;
     public float DoorOpenSpeed = 1.0f;
+    public bool isLocked = false;
 
     bool isOpened, isClosing, isOpenning;
     float currentYRotation;
@@ -36,7 +37,7 @@ public class DoorBehaviour : MonoBehaviour
         }
 
         player = GameObject.Find("First Person Duck Controller").transform;
-        //Debug.Log(player);
+        //Debug.Log(gameObject.name);
 
 	}
 	
@@ -48,43 +49,50 @@ public class DoorBehaviour : MonoBehaviour
 
         if (cooldown > 0)
             cooldown -= Time.deltaTime;
-        else
+        else if (!isLocked)
         {
             Ray playerLookRay = new Ray(player.FindChild("Main Camera").position, player.FindChild("Main Camera").forward);
             RaycastHit hitInfo;
             //Debug.DrawRay(player.position, player.forward);
 
-            //Set Door in motion. If already in motion, set it in other direction.
-            if (Input.GetAxis("Action") > 0 && !isActionStillPressed  && Vector3.Distance(doorTransform.position, player.position) < 3.5f && doorTransform.FindChild("Door").gameObject.collider.Raycast(playerLookRay, out hitInfo, 10))
+            try
             {
-                //Debug.Log(Vector3.Distance(doorTransform.position, player.position));
+                //Set Door in motion. If already in motion, set it in other direction.
+                if (Input.GetAxis("Action") > 0 && !isActionStillPressed && Vector3.Distance(doorTransform.position, player.position) < 3.5f && doorTransform.FindChild("Door").gameObject.collider.Raycast(playerLookRay, out hitInfo, 10))
+                {
+                    //Debug.Log(Vector3.Distance(doorTransform.position, player.position));
 
-                cooldown = DOOR_COOLDOWN;
-                isActionStillPressed = true;
-                //player.GetComponent<CharacterMotor>().enabled = false;
+                    cooldown = DOOR_COOLDOWN;
+                    isActionStillPressed = true;
+                    //player.GetComponent<CharacterMotor>().enabled = false;
 
-                if (isClosing)
-                {
-                    isClosing = false;
-                    isOpenning = true;
-                }
-                else if (isOpenning)
-                {
-                    isClosing = true;
-                    isOpenning = false;
-                }
-                else if (isOpened)
-                {
-                    isClosing = true;
-                    isOpened = false;
-                }
-                else//isClosed
-                {
-                    isOpenning = true;
-                }
+                    if (isClosing)
+                    {
+                        isClosing = false;
+                        isOpenning = true;
+                    }
+                    else if (isOpenning)
+                    {
+                        isClosing = true;
+                        isOpenning = false;
+                    }
+                    else if (isOpened)
+                    {
+                        isClosing = true;
+                        isOpened = false;
+                    }
+                    else//isClosed
+                    {
+                        isOpenning = true;
+                    }
 
+                }
             }
-
+            catch
+            {
+                Debug.Log(gameObject.name);
+            }
+                
             //check if fully closed/opened; else, continue motion
             if (isClosing)
             {
@@ -146,5 +154,27 @@ public class DoorBehaviour : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OpenDoor()
+    {
+        isOpenning = true;
+        isClosing = false;
+    }
+
+    public void CloseDoor()
+    {
+        isClosing = true;
+        isOpenning = false;
+    }
+
+    public void LockDoor()
+    {
+        isLocked = true;
+    }
+
+    public void UnlockDoor()
+    {
+        isLocked = false;
     }
 }

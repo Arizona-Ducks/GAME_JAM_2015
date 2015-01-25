@@ -13,30 +13,29 @@ public class SceneChange : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (this.name.Substring(3) == Application.loadedLevelName)
+        if (col.gameObject.tag == "Player")
         {
-            //Respawn
-            Transform player = GameObject.Find("First Person Duck Controller").transform;
-            Transform spawn = GameObject.Find("RespawnPoint").transform;
-            player.Translate(spawn.position - player.position, Space.World);
-        }
-        else
-        {
-            if (Application.loadedLevelName == "Room_03" && col.gameObject.tag == "Player" && this.name.Substring(3) == "FirstRoom")
+            if (this.name.Substring(3) == Application.loadedLevelName)
             {
-                flags.IS_THE_NOTE_MISSING = true;
-                flags.IS_ARRIVING_FROM_ROOM_03_TO_FIRST_ROOM = true;
+                //Respawn
+                Transform player = GameObject.Find("First Person Duck Controller").transform;
+                Transform spawn = GameObject.Find("RespawnPoint").transform;
+                player.Translate(spawn.position - player.position, Space.World);
+            }
+            else
+            {
+                if (Application.loadedLevelName == "Room_03" && this.name.Substring(3) == "FirstRoom")
+                {
+                    flags.IS_THE_NOTE_MISSING = true;
+                    flags.IS_ARRIVING_FROM_ROOM_03_TO_FIRST_ROOM = true;
+                }
+                else if (Application.loadedLevelName == "Room_08" && this.name.Substring(3) == "FirstRoom")
+                {
+                    flags.IS_ARRIVING_FROM_ROOM_08_TO_FIRST_ROOM = true;
+                }
 
                 Application.LoadLevel(this.name.Substring(3));
             }
-            else if (Application.loadedLevelName == "Room_08" && col.gameObject.tag == "Player" && this.name.Substring(3) == "FirstRoom")
-            {
-                flags.IS_ARRIVING_FROM_ROOM_08_TO_FIRST_ROOM = true;
-                Application.LoadLevel(this.name.Substring(3));
-            }
-
-            if (col.gameObject.tag == "Player")
-                Application.LoadLevel(this.name.Substring(3));
         }
     }
 }

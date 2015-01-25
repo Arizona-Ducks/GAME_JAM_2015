@@ -8,10 +8,18 @@ public class GunBehaviour : MonoBehaviour
     bool HasFoundTimeGun = false;
 
     public GameObject FowardBeam;
+    GameObject[] shots;
+    bool[] shotsAlive;
+    float speed = 1;
 
 	// Use this for initialization
 	void Start () 
     {
+        shots = new GameObject[1000];
+        shotsAlive = new bool[1000];
+        for (int i = 0; i < 1000; i++)
+            shotsAlive[i] = false;
+
         flags = GameObject.Find("First Person Duck Controller").GetComponent<GLOBAL_FLAGS>();
 
         animator = GetComponent<Animator>();
@@ -40,14 +48,42 @@ public class GunBehaviour : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
             {
                 animator.SetBool("Shoot", true);
-                FowardBeam.SetActive(true);
-                //FowardBeam.transform.Rotate(new Vector3(0, 0, 1), 10);
+                speed = 0.1f;
+                
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (!shotsAlive[i])
+                    {
+                        shots[i] = Instantiate(FowardBeam, gameObject.transform.position, GameObject.Find("First Person Duck Controller").transform.FindChild("Main Camera").transform.rotation) as GameObject;
+                        shots[i].transform.SetParent(GameObject.Find("First Person Duck Controller").transform.FindChild("Main Camera").transform);
+                        shotsAlive[i] = true;
+                        break;
+                    }
+                }                
+
             }
             else
             {
                 animator.SetBool("Shoot", false);
-                FowardBeam.SetActive(false);
+                speed = 10;
             }
+
+            for (int i = 0; i < 1000; i++)
+            {
+                if (shotsAlive[i])
+                {
+                    shots[i].transform.Translate(0, 0, speed, Space.Self);
+
+
+                    if (shots[i].transform.FindChild("Beam").transform.GetComponent<BeamBehaviour>().Alive == false)
+                    {
+                        shotsAlive[i] = false;
+                        Destroy(shots[i]);
+                    }
+                    
+                }
+            }
+
         }
 	}
 }

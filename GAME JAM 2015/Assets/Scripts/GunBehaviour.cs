@@ -17,6 +17,9 @@ public class GunBehaviour : MonoBehaviour
     float speed = 1;
 
     bool isFiring = false;
+    public Material forwardMaterial;
+    public Material reverseMaterial;
+    public Material neutralMaterial;
 
 	// Use this for initialization
 	void Start () 
@@ -59,12 +62,14 @@ public class GunBehaviour : MonoBehaviour
 
                     gameObject.transform.FindChild("GunStart").GetComponent<AudioSource>().Play();
                     gameObject.transform.FindChild("GunBeam").GetComponent<AudioSource>().PlayDelayed(0.5f);
+                    
                 }
 
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
                     FIRING_BACKWARD = false;
                     FIRING_FORWARD = true;
+                    gameObject.transform.FindChild("GeoSphere001").GetComponent<MeshRenderer>().material = forwardMaterial;
                     //Debug.Log("FIRING_FORWARD :" + FIRING_FORWARD);
 
                     for (int i = 0; i < 1000; i++)
@@ -82,6 +87,7 @@ public class GunBehaviour : MonoBehaviour
                 {
                     FIRING_BACKWARD = true;
                     FIRING_FORWARD = false;
+                    gameObject.transform.FindChild("GeoSphere001").GetComponent<MeshRenderer>().material = reverseMaterial;
                     //Debug.Log("FIRING_BACKWARD :" + FIRING_BACKWARD);
 
                     for (int i = 0; i < 1000; i++)
@@ -108,6 +114,7 @@ public class GunBehaviour : MonoBehaviour
 
                 isFiring = false;
                 gameObject.transform.FindChild("GunBeam").GetComponent<AudioSource>().Stop();
+                gameObject.transform.FindChild("GeoSphere001").GetComponent<MeshRenderer>().material = neutralMaterial;
 
                 FIRING_BACKWARD = false;
                 FIRING_FORWARD = false;

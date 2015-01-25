@@ -11,7 +11,6 @@ public class Room_07_Event_Handler : MonoBehaviour
     float[] delays;
     float[] delayStorage;
     float totalDelay;
-    bool playingPattern = false;
     NoteButton[] buttons;
 
     GLOBAL_FLAGS flags;

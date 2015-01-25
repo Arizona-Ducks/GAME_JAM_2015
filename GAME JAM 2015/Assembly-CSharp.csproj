@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Custom Assets\Breakable Glass\Scripts\BreakGlass.cs" />
      <Compile Include="Assets\Custom Assets\Breakable Glass\Scripts\GlassBreaker.cs" />
+     <Compile Include="Assets\Scripts\AnalogClock.cs" />
      <Compile Include="Assets\Scripts\BeamBehaviour.cs" />
      <Compile Include="Assets\Scripts\ButtonRoomButtons.cs" />
      <Compile Include="Assets\Scripts\ButtonRoomButtons2.cs" />
@@ -60,6 +61,7 @@
      <Compile Include="Assets\Scripts\GunBehaviour.cs" />
      <Compile Include="Assets\Scripts\HorizontalMovingPlatform.cs" />
      <Compile Include="Assets\Scripts\InitialLevelLoad.cs" />
+     <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MoveableWallBehaviour.cs" />
      <Compile Include="Assets\Scripts\NoteButton.cs" />
      <Compile Include="Assets\Scripts\PersistantPlayer.cs" />

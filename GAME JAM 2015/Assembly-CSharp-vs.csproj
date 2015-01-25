@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Custom Assets\Breakable Glass\Scripts\BreakGlass.cs" />
      <Compile Include="Assets\Custom Assets\Breakable Glass\Scripts\GlassBreaker.cs" />
+     <Compile Include="Assets\Scripts\AnalogClock.cs" />
      <Compile Include="Assets\Scripts\BeamBehaviour.cs" />
      <Compile Include="Assets\Scripts\ButtonRoomButtons.cs" />
      <Compile Include="Assets\Scripts\ButtonRoomButtons2.cs" />
@@ -60,6 +61,7 @@
      <Compile Include="Assets\Scripts\GunBehaviour.cs" />
      <Compile Include="Assets\Scripts\HorizontalMovingPlatform.cs" />
      <Compile Include="Assets\Scripts\InitialLevelLoad.cs" />
+     <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MoveableWallBehaviour.cs" />
      <Compile Include="Assets\Scripts\NoteButton.cs" />
      <Compile Include="Assets\Scripts\PersistantPlayer.cs" />
@@ -77,7 +79,7 @@
      <None Include="Assets\Custom Assets\Breakable Glass\README.txt" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/Kees/Documents/GitHub/GAME_JAM_2015/GAME JAM 2015/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Kees/Desktop/GAME JAM 2015/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>

@@ -41,6 +41,7 @@ public class GunBehaviour : MonoBehaviour
             {
                 animator.SetBool("Shoot", true);
                 FowardBeam.SetActive(true);
+                //FowardBeam.transform.Rotate(new Vector3(0, 0, 1), 10);
             }
             else
             {

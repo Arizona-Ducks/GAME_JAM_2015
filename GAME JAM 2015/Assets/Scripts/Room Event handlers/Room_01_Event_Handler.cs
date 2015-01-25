@@ -5,11 +5,14 @@ public class Room_01_Event_Handler : MonoBehaviour {
 
     public GameObject Note;
     public GameObject GunStand;
+    AudioSource finishedSound;
+
     GLOBAL_FLAGS flags;
 
 	// Use this for initialization
 	void Start () 
     {
+        finishedSound = GetComponent<AudioSource>();
         flags = GameObject.Find("First Person Duck Controller").GetComponent<GLOBAL_FLAGS>();
 
         if (flags.IS_THE_NOTE_MISSING)
@@ -47,6 +50,12 @@ public class Room_01_Event_Handler : MonoBehaviour {
         {
             GunStand.transform.FindChild("GeoSphere005").gameObject.SetActive(false);
             GunStand.transform.FindChild("TimeGun").gameObject.SetActive(false);
+            flags.FINISHED_PUZZLE = true;
+        }
+        if (flags.FINISHED_PUZZLE)
+        {
+            finishedSound.Play();
+            flags.FINISHED_PUZZLE = false;
         }
 	}
 }

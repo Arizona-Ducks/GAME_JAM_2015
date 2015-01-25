@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Room_02_Event_Handler : MonoBehaviour {
-    
+
+    AudioSource finishedSound;
     public GameObject lockedDoor1, lockedDoor2;
     public GameObject wall1, wall2;
     GLOBAL_FLAGS flags;
@@ -10,6 +11,7 @@ public class Room_02_Event_Handler : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        finishedSound = GetComponent<AudioSource>();
         flags = GameObject.Find("First Person Duck Controller").GetComponent<GLOBAL_FLAGS>();
         flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED = 0;
     }
@@ -18,11 +20,17 @@ public class Room_02_Event_Handler : MonoBehaviour {
 	void Update () 
     {
         if (flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED == 1)
+        {
             lockedDoor1.transform.GetComponent<DoorBehaviour>().OpenDoor();
+            flags.FINISHED_PUZZLE = true;
+        }
         else
             lockedDoor1.transform.GetComponent<DoorBehaviour>().CloseDoor();
         if (flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED == 2)
+        {
             lockedDoor2.transform.GetComponent<DoorBehaviour>().OpenDoor();
+            flags.FINISHED_PUZZLE = true;
+        }
         else
             lockedDoor2.transform.GetComponent<DoorBehaviour>().CloseDoor();
         if (flags.IS_SWITCH_PRESSED == true)
@@ -33,5 +41,10 @@ public class Room_02_Event_Handler : MonoBehaviour {
             wall2.transform.GetComponent<MoveableWallBehaviour>().Open();
         else
             wall2.transform.GetComponent<MoveableWallBehaviour>().Close();
+        if (flags.FINISHED_PUZZLE)
+        {
+            finishedSound.Play();
+            flags.FINISHED_PUZZLE = false;
+        }
 	}
 }

@@ -7,6 +7,7 @@ public class GLOBAL_FLAGS : MonoBehaviour
     
     //GLOBAL
     public bool HAS_PICKUP_THE_GUN = false;
+    public bool FINISHED_PUZZLE = false;
     
     //Room_01 (firstRoom)
     public bool IS_THE_NOTE_MISSING = false;

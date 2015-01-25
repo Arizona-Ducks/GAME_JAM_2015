@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Room_07_Event_Handler : MonoBehaviour 
 {
-
+    AudioSource finishedSound;
     int score = 0;
     DoorBehaviour door;
     int numNotes;
@@ -18,6 +18,7 @@ public class Room_07_Event_Handler : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
+        finishedSound = GetComponent<AudioSource>();
         door = GameObject.Find("LockedDoor").GetComponent<DoorBehaviour>();
         flags = GameObject.Find("First Person Duck Controller").GetComponent<GLOBAL_FLAGS>();
         numNotes = Random.Range(5, 7);
@@ -76,8 +77,14 @@ public class Room_07_Event_Handler : MonoBehaviour
 
         if (score == numNotes - 1)
         {
+            flags.FINISHED_PUZZLE = true;
             door.isLocked = false;
             door.OpenDoor();
+        }
+        if (flags.FINISHED_PUZZLE)
+        {
+            finishedSound.Play();
+            flags.FINISHED_PUZZLE = false;
         }
 	}
 

@@ -39,7 +39,6 @@ public class NoteButton : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "First Person Duck Controller")
-            Play();
+        Play();
     }
 }

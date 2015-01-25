@@ -7,6 +7,8 @@ public class GunBehaviour : MonoBehaviour
     protected Animator animator;
     bool HasFoundTimeGun = false;
 
+    public GameObject FowardBeam;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -36,9 +38,15 @@ public class GunBehaviour : MonoBehaviour
         else
         {
             if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
+            {
                 animator.SetBool("Shoot", true);
+                FowardBeam.SetActive(true);
+            }
             else
+            {
                 animator.SetBool("Shoot", false);
+                FowardBeam.SetActive(false);
+            }
         }
 	}
 }

@@ -11,6 +11,7 @@ public class GunBehaviour : MonoBehaviour
     bool HasFoundTimeGun = false;
 
     public GameObject FowardBeam;
+    public GameObject ReverseBeam;
     GameObject[] shots;
     bool[] shotsAlive;
     float speed = 1;
@@ -54,29 +55,40 @@ public class GunBehaviour : MonoBehaviour
                 {
                     FIRING_BACKWARD = false;
                     FIRING_FORWARD = true;
-                    Debug.Log("FIRING_FORWARD :" + FIRING_FORWARD);
+                    //Debug.Log("FIRING_FORWARD :" + FIRING_FORWARD);
+
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        if (!shotsAlive[i])
+                        {
+                            shots[i] = Instantiate(FowardBeam, gameObject.transform.position, GameObject.Find("First Person Duck Controller").transform.FindChild("Main Camera").transform.rotation) as GameObject;
+                            shots[i].transform.SetParent(GameObject.Find("First Person Duck Controller").transform.FindChild("Main Camera").transform);
+                            shotsAlive[i] = true;
+                            break;
+                        }
+                    }      
                 }
                 else if (Input.GetKey(KeyCode.Mouse1))
                 {
                     FIRING_BACKWARD = true;
                     FIRING_FORWARD = false;
-                    Debug.Log("FIRING_BACKWARD :" + FIRING_BACKWARD);
+                    //Debug.Log("FIRING_BACKWARD :" + FIRING_BACKWARD);
+
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        if (!shotsAlive[i])
+                        {
+                            shots[i] = Instantiate(ReverseBeam, gameObject.transform.position, GameObject.Find("First Person Duck Controller").transform.FindChild("Main Camera").transform.rotation) as GameObject;
+                            shots[i].transform.SetParent(GameObject.Find("First Person Duck Controller").transform.FindChild("Main Camera").transform);
+                            shotsAlive[i] = true;
+                            break;
+                        }
+                    }      
                 }
                     
 
                 animator.SetBool("Shoot", true);
-                speed = 0.1f;
-                
-                for (int i = 0; i < 1000; i++)
-                {
-                    if (!shotsAlive[i])
-                    {
-                        shots[i] = Instantiate(FowardBeam, gameObject.transform.position, GameObject.Find("First Person Duck Controller").transform.FindChild("Main Camera").transform.rotation) as GameObject;
-                        shots[i].transform.SetParent(GameObject.Find("First Person Duck Controller").transform.FindChild("Main Camera").transform);
-                        shotsAlive[i] = true;
-                        break;
-                    }
-                }                
+                speed = 0.1f;          
 
             }
             else

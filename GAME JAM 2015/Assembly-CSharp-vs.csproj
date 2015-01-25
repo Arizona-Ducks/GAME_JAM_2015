@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\BeamBehaviour.cs" />
      <Compile Include="Assets\Scripts\ButtonRoomButtons.cs" />
      <Compile Include="Assets\Scripts\ButtonRoomButtons2.cs" />
+     <Compile Include="Assets\Scripts\Credits.cs" />
      <Compile Include="Assets\Scripts\DoorBehaviour.cs" />
      <Compile Include="Assets\Scripts\FinalRoomBtns.cs" />
      <Compile Include="Assets\Scripts\GLOBAL_FLAGS.cs" />
@@ -79,7 +80,7 @@
      <None Include="Assets\Custom Assets\Breakable Glass\README.txt" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/red_5_000/Documents/GitHub/_GAME_JAM_2015_WORKING/GAME JAM 2015/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Kees/Desktop/GAME JAM 2015/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>

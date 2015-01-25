@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\BeamBehaviour.cs" />
      <Compile Include="Assets\Scripts\ButtonRoomButtons.cs" />
      <Compile Include="Assets\Scripts\ButtonRoomButtons2.cs" />
+     <Compile Include="Assets\Scripts\Credits.cs" />
      <Compile Include="Assets\Scripts\DoorBehaviour.cs" />
      <Compile Include="Assets\Scripts\FinalRoomBtns.cs" />
      <Compile Include="Assets\Scripts\GLOBAL_FLAGS.cs" />

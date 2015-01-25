@@ -29,9 +29,11 @@ public class SceneChange : MonoBehaviour {
                     flags.IS_THE_NOTE_MISSING = true;
                     flags.IS_ARRIVING_FROM_ROOM_03_TO_FIRST_ROOM = true;
                 }
-                else if (Application.loadedLevelName == "Room_08" && this.name.Substring(3) == "FirstRoom")
+                else if (Application.loadedLevelName == "Room_08" && this.name.Substring(3) == "Credits")
                 {
-                    flags.IS_ARRIVING_FROM_ROOM_08_TO_FIRST_ROOM = true;
+                    //flags.IS_ARRIVING_FROM_ROOM_08_TO_FIRST_ROOM = true;
+                    GameObject.Find("First Person Duck Controller").transform.FindChild("Main Camera").parent = null;
+                    Destroy(GameObject.Find("First Person Duck Controller"));
                 }
 
                 Application.LoadLevel(this.name.Substring(3));

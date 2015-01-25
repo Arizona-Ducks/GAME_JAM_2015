@@ -32,7 +32,7 @@ public class VerticalMovingPlatform : MonoBehaviour {
             RaycastHit hitInfo;
 
             //checks for raycast hit from gun camera
-            if (gameObject.transform.FindChild("PlatformV").gameObject.collider.Raycast(gunLookRay, out hitInfo, 30))
+            if (gameObject.transform.FindChild("PlatformV").gameObject.collider.Raycast(gunLookRay, out hitInfo, 100))
             {
                 Thawed();
             }
@@ -43,7 +43,7 @@ public class VerticalMovingPlatform : MonoBehaviour {
             RaycastHit hitInfo;
 
             //checks for raycast hit from gun camera
-            if (gameObject.transform.FindChild("PlatformV").gameObject.collider.Raycast(gunLookRay, out hitInfo, 30))
+            if (gameObject.transform.FindChild("PlatformV").gameObject.collider.Raycast(gunLookRay, out hitInfo, 100))
             {
                 Frozen();
             }

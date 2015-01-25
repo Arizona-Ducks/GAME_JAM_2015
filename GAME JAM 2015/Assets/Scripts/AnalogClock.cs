@@ -10,7 +10,7 @@ public class AnalogClock : MonoBehaviour
 
     public bool StartsInReverse = false;
 
-    bool timeRunningFoward;
+    public bool timeRunningFoward;
     public int timeSpeed = 1;
     DateTime currentTime;
     Transform player;
@@ -30,7 +30,7 @@ public class AnalogClock : MonoBehaviour
             RaycastHit hitInfo;
 
             //checks for raycast hit from gun camera
-            if (gameObject.transform.FindChild("Clock-Face").gameObject.collider.Raycast(gunLookRay, out hitInfo, 30))
+            if (gameObject.transform.FindChild("Clock-Face").gameObject.collider.Raycast(gunLookRay, out hitInfo, 100))
             {
                 ChangeTimeDirectionToFoward();
             }
@@ -41,7 +41,7 @@ public class AnalogClock : MonoBehaviour
             RaycastHit hitInfo;
 
             //checks for raycast hit from gun camera
-            if (gameObject.transform.FindChild("Clock-Face").gameObject.collider.Raycast(gunLookRay, out hitInfo, 30))
+            if (gameObject.transform.FindChild("Clock-Face").gameObject.collider.Raycast(gunLookRay, out hitInfo, 100))
             {
                 ChangeTimeDirectionToReverse();
             }
@@ -55,7 +55,7 @@ public class AnalogClock : MonoBehaviour
         else
         {
             currentTime = currentTime.AddSeconds(Time.fixedDeltaTime * -timeSpeed);
-            Debug.Log(currentTime);
+            //Debug.Log(currentTime);
         }
 
         float seconds = (float)currentTime.Second;

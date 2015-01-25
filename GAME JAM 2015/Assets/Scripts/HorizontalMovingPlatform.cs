@@ -30,7 +30,7 @@ public class HorizontalMovingPlatform : MonoBehaviour {
             RaycastHit hitInfo;
 
             //checks for raycast hit from gun camera
-            if (gameObject.transform.FindChild("PlatformH").gameObject.collider.Raycast(gunLookRay, out hitInfo, 30))
+            if (gameObject.transform.FindChild("PlatformH").gameObject.collider.Raycast(gunLookRay, out hitInfo, 100))
             {
                 Thawed();
             }
@@ -41,7 +41,7 @@ public class HorizontalMovingPlatform : MonoBehaviour {
             RaycastHit hitInfo;
 
             //checks for raycast hit from gun camera
-            if (gameObject.transform.FindChild("PlatformH").gameObject.collider.Raycast(gunLookRay, out hitInfo, 30))
+            if (gameObject.transform.FindChild("PlatformH").gameObject.collider.Raycast(gunLookRay, out hitInfo, 100))
             {
                 Frozen();
             }

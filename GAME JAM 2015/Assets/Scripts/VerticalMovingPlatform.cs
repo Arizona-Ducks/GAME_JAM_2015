@@ -23,26 +23,30 @@ public class VerticalMovingPlatform : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetMouseButtonDown(0))
+        
+        if (player.transform.FindChild("Main Camera").transform.FindChild("TimeGun").GetComponent<GunBehaviour>().FIRING_FORWARD)
         {
-            Ray playerLookRay = new Ray(player.FindChild("Main Camera").position, player.FindChild("Main Camera").forward);
+            Ray gunLookRay = new Ray(player.FindChild("Main Camera").transform.FindChild("TimeGun").position, player.FindChild("Main Camera").transform.FindChild("TimeGun").forward);
             RaycastHit hitInfo;
 
-            //checks for raycast hit from player camera
-            if (platform.gameObject.collider.Raycast(playerLookRay, out hitInfo, 10))
+            //checks for raycast hit from gun camera
+            if (platform.gameObject.collider.Raycast(gunLookRay, out hitInfo, 15))
             {
-                //stalls movement if moving
-                if (!stopped)
-                {
-                    Frozen();
-                }
-                //starts movement if frozen
-                else if (stopped)
-                {
-                    Thawed();
-                }
+                Thawed();
             }
         }
+        else if (player.transform.FindChild("Main Camera").transform.FindChild("TimeGun").GetComponent<GunBehaviour>().FIRING_BACKWARD)
+        {
+            Ray gunLookRay = new Ray(player.FindChild("Main Camera").transform.FindChild("TimeGun").position, player.FindChild("Main Camera").transform.FindChild("TimeGun").forward);
+            RaycastHit hitInfo;
+
+            //checks for raycast hit from gun camera
+            if (platform.gameObject.collider.Raycast(gunLookRay, out hitInfo, 15))
+            {
+                Frozen();
+            }
+        }
+
         if (!stopped)
         {
             platform.transform.Translate(Moving(vspeed) / 15.0f);

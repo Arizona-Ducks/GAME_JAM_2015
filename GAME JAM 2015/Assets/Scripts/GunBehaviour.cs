@@ -4,6 +4,9 @@ using System.Collections;
 public class GunBehaviour : MonoBehaviour 
 {
     GLOBAL_FLAGS flags;
+    public bool FIRING_FORWARD = false;
+    public bool FIRING_BACKWARD = false;
+
     protected Animator animator;
     bool HasFoundTimeGun = false;
 
@@ -47,6 +50,20 @@ public class GunBehaviour : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
             {
+                if (Input.GetKey(KeyCode.Mouse0))
+                {
+                    FIRING_BACKWARD = false;
+                    FIRING_FORWARD = true;
+                    Debug.Log("FIRING_FORWARD :" + FIRING_FORWARD);
+                }
+                else if (Input.GetKey(KeyCode.Mouse1))
+                {
+                    FIRING_BACKWARD = true;
+                    FIRING_FORWARD = false;
+                    Debug.Log("FIRING_BACKWARD :" + FIRING_BACKWARD);
+                }
+                    
+
                 animator.SetBool("Shoot", true);
                 speed = 0.1f;
                 
@@ -66,6 +83,9 @@ public class GunBehaviour : MonoBehaviour
             {
                 animator.SetBool("Shoot", false);
                 speed = 10;
+
+                FIRING_BACKWARD = false;
+                FIRING_FORWARD = false;
             }
 
             for (int i = 0; i < 1000; i++)

@@ -56,10 +56,13 @@
      <Compile Include="Assets\Scripts\GunBehaviour.cs" />
      <Compile Include="Assets\Scripts\HorizontalMovingPlatform.cs" />
      <Compile Include="Assets\Scripts\InitialLevelLoad.cs" />
+     <Compile Include="Assets\Scripts\NoteButton.cs" />
      <Compile Include="Assets\Scripts\PersistantPlayer.cs" />
+     <Compile Include="Assets\Scripts\Phonograph.cs" />
      <Compile Include="Assets\Scripts\Room Event handlers\Room_01_Event_Handler.cs" />
      <Compile Include="Assets\Scripts\Room Event handlers\Room_02_Event_Handler.cs" />
      <Compile Include="Assets\Scripts\Room Event handlers\Room_03_Event_Handler.cs" />
+     <Compile Include="Assets\Scripts\Room Event handlers\Room_07_Event_Handler.cs" />
      <Compile Include="Assets\Scripts\SceneChange.cs" />
      <Compile Include="Assets\Scripts\VerticalMovingPlatform.cs" />
      <None Include="Assets\Custom Assets\Breakable Glass\Shaders\SimpleGlass.shader" />

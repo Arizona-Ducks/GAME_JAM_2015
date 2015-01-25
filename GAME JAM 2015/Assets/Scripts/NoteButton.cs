@@ -9,7 +9,7 @@ public class NoteButton : MonoBehaviour
 
     GLOBAL_FLAGS flags;
     const float COOL_DOWN = 0.3f;
-    float cooldown = COOL_DOWN;
+    public float cooldown = COOL_DOWN;
 	// Use this for initialization
 	void Start () 
     {

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Room_07_Event_Handler : MonoBehaviour 
 {
-
+    AnalogClock clock;
     int score = 0;
     DoorBehaviour door;
     int numNotes;
@@ -12,18 +12,21 @@ public class Room_07_Event_Handler : MonoBehaviour
     float[] delayStorage;
     float totalDelay;
     NoteButton[] buttons;
+    bool[] noteHasPlayed;
 
     GLOBAL_FLAGS flags;
 
 	// Use this for initialization
 	void Start () 
     {
+        clock = GameObject.Find("Clock").GetComponent<AnalogClock>();
         door = GameObject.Find("LockedDoor").GetComponent<DoorBehaviour>();
         flags = GameObject.Find("First Person Duck Controller").GetComponent<GLOBAL_FLAGS>();
         numNotes = Random.Range(5, 7);
         noteID = new int[numNotes];
         delays = new float[numNotes];
         delayStorage = new float[numNotes];
+        noteHasPlayed = new bool[numNotes];
         buttons = new NoteButton[4];
         buttons[0] = GameObject.Find("Button1").GetComponent<NoteButton>();
         buttons[1] = GameObject.Find("Button2").GetComponent<NoteButton>();
@@ -31,6 +34,7 @@ public class Room_07_Event_Handler : MonoBehaviour
         buttons[3] = GameObject.Find("Button4").GetComponent<NoteButton>();
         for (int i = 0; i < numNotes; ++i)
         {
+            noteHasPlayed[i] = false;
             noteID[i] = Random.Range(0, 4);
             int tmp = Random.Range(0, 2);
             switch(tmp)
@@ -57,6 +61,17 @@ public class Room_07_Event_Handler : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
+        if(flags.HAS_PATTERN_PLAYED)
+            for (int i = 0; i < numNotes; ++i)
+            {
+                noteHasPlayed[i] = false;
+                delays[i] = delayStorage[i];
+            }
+        if (!clock.timeRunningFoward && flags.HAS_PATTERN_PLAYED)
+        {
+            flags.HAS_PATTERN_PLAYED = false;
+            clock.timeRunningFoward = true;
+        }
         if (flags.HAS_PATTERN_PLAYED == false)//If pattern isnt playing and hasnt been played yet then play it once
         {
             PlayPattern();
@@ -85,14 +100,19 @@ public class Room_07_Event_Handler : MonoBehaviour
     {
         for (int i = 0; i < numNotes; ++i)
         {
+            Debug.Log(i);
+            Debug.Log(delays[i]);
             if (delays[i] > 0)
             {
                 delays[i] -= Time.deltaTime;
             }
             else
             {
-                delays[i] = delayStorage[i] + totalDelay;
-                buttons[noteID[i]].Play();
+                if (!noteHasPlayed[i])
+                {
+                    buttons[noteID[i]].Play();
+                    noteHasPlayed[i] = true;
+                }
             }
         }
     }

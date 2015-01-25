@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Room_02_Event_Handler : MonoBehaviour {
     
-    public GameObject LockedDoor1;
+    public GameObject lockedDoor1, lockedDoor2;
     public GameObject wall1, wall2;
     GLOBAL_FLAGS flags;
 
@@ -18,9 +18,13 @@ public class Room_02_Event_Handler : MonoBehaviour {
 	void Update () 
     {
         if (flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED == 1)
-            LockedDoor1.transform.GetComponent<DoorBehaviour>().OpenDoor();
+            lockedDoor1.transform.GetComponent<DoorBehaviour>().OpenDoor();
         else
-            LockedDoor1.transform.GetComponent<DoorBehaviour>().CloseDoor();
+            lockedDoor1.transform.GetComponent<DoorBehaviour>().CloseDoor();
+        if (flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED == 2)
+            lockedDoor2.transform.GetComponent<DoorBehaviour>().OpenDoor();
+        else
+            lockedDoor2.transform.GetComponent<DoorBehaviour>().CloseDoor();
         if (flags.IS_SWITCH_PRESSED == true)
             wall1.transform.GetComponent<MoveableWallBehaviour>().Open();
         else

@@ -13,6 +13,8 @@ public class PersistantPlayer : MonoBehaviour {
 	void Update () 
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            Application.LoadLevel("MainMenu");
+        {
+            Application.Quit();
+        }
 	}
 }

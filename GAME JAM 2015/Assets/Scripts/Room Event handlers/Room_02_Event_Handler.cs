@@ -10,6 +10,11 @@ public class Room_02_Event_Handler : MonoBehaviour {
     public GameObject wall1, wall2;
     GLOBAL_FLAGS flags;
 
+    public GameObject clock;
+    bool has_2nd_box_spawned = false;
+    public Transform boxSpawnPoint;
+    public GameObject box;
+
     // Use this for initialization
     void Start()
     {
@@ -21,6 +26,12 @@ public class Room_02_Event_Handler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        if (!clock.GetComponent<AnalogClock>().timeRunningFoward && !has_2nd_box_spawned)
+        {
+            has_2nd_box_spawned = true;
+            Instantiate(box, boxSpawnPoint.position, boxSpawnPoint.rotation);
+        }
+
         if (flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED == 1)
         {
             lockedDoor1.transform.GetComponent<DoorBehaviour>().OpenDoor();

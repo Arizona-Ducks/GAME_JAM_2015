@@ -17,4 +17,9 @@ public class GLOBAL_FLAGS : MonoBehaviour
 
     //Room_07
     public bool HAS_PATTERN_PLAYED = false;
+    public int NOTE_PRESSED = -1;
+
+    //Room 08
+    public bool FINAL_ROOM_BUTTON_PRESSED = false;
+
 }

@@ -5,8 +5,8 @@ public class Phonograph : MonoBehaviour
 {
 
     AudioSource recordNorm, recordRev;
-    bool isRev;
-    bool isNorm;
+    public bool isRev;
+    public bool isNorm;
 
 
 
@@ -17,8 +17,7 @@ public class Phonograph : MonoBehaviour
         recordNorm = gameObject.transform.FindChild("RecordNorm").transform.GetComponent<AudioSource>();
         recordRev = gameObject.transform.FindChild("RecordRev").transform.GetComponent<AudioSource>();
 
-        isRev = true;
-        isNorm = false;
+        
     }
 
     // Update is called once per frame

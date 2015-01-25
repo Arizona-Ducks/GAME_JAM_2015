@@ -3,7 +3,9 @@ using System.Collections;
 
 public class Room_07_Event_Handler : MonoBehaviour 
 {
- 
+
+    int score = 0;
+    bool finished = false;
     int numNotes;
     int[] noteID;
     float[] delays;
@@ -55,15 +57,26 @@ public class Room_07_Event_Handler : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
-        //Debug.Log(flags.HAS_PATTERN_PLAYED);
         if (flags.HAS_PATTERN_PLAYED == false)//If pattern isnt playing and hasnt been played yet then play it once
         {
             PlayPattern();
             if (delays[numNotes - 1] <= 0) //if last delay is 0 then all the notes have played
-            {
                 flags.HAS_PATTERN_PLAYED = true;
-            }
+        }
 
+        //If a button is pressed check if its the right one
+        if (flags.NOTE_PRESSED != 0)
+        {
+            if (noteID[score] == flags.NOTE_PRESSED - 1 && score < numNotes)
+                score++;
+            else if (noteID[score] != flags.NOTE_PRESSED - 1)
+                score = 0;
+            flags.NOTE_PRESSED = 0;
+        }
+
+        if (score == numNotes - 1)
+        {
+            finished = true;
         }
 	}
 
@@ -74,8 +87,6 @@ public class Room_07_Event_Handler : MonoBehaviour
             if (delays[i] > 0)
             {
                 delays[i] -= Time.deltaTime;
-                Debug.Log(i);
-                Debug.Log(delays[i]);
             }
             else
             {

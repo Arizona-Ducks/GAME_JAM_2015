@@ -16,6 +16,8 @@ public class GunBehaviour : MonoBehaviour
     bool[] shotsAlive;
     float speed = 1;
 
+    bool isFiring = false;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -51,6 +53,14 @@ public class GunBehaviour : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
             {
+                if(!isFiring)
+                {
+                    isFiring = true;
+
+                    gameObject.transform.FindChild("GunStart").GetComponent<AudioSource>().Play();
+                    gameObject.transform.FindChild("GunBeam").GetComponent<AudioSource>().PlayDelayed(0.5f);
+                }
+
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
                     FIRING_BACKWARD = false;
@@ -95,6 +105,9 @@ public class GunBehaviour : MonoBehaviour
             {
                 animator.SetBool("Shoot", false);
                 speed = 10;
+
+                isFiring = false;
+                gameObject.transform.FindChild("GunBeam").GetComponent<AudioSource>().Stop();
 
                 FIRING_BACKWARD = false;
                 FIRING_FORWARD = false;

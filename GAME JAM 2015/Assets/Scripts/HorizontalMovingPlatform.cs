@@ -61,7 +61,6 @@ public class HorizontalMovingPlatform : MonoBehaviour {
         {
             left = true;
         }
-        Debug.Log(left);
 
         if (left)
             return hspeed;

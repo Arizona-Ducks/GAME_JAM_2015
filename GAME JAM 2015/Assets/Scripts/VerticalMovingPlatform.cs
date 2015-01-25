@@ -59,7 +59,6 @@ public class VerticalMovingPlatform : MonoBehaviour {
         {
             down = false;
         }
-        Debug.Log(down);
 
         if (down)
             return vspeed;

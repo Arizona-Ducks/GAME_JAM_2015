@@ -50,14 +50,17 @@
      <Compile Include="Assets\Custom Assets\Breakable Glass\Scripts\GlassBreaker.cs" />
      <Compile Include="Assets\Scripts\BeamBehaviour.cs" />
      <Compile Include="Assets\Scripts\ButtonRoomButtons.cs" />
+     <Compile Include="Assets\Scripts\ButtonRoomButtons2.cs" />
      <Compile Include="Assets\Scripts\DoorBehaviour.cs" />
      <Compile Include="Assets\Scripts\FinalRoomBtns.cs" />
      <Compile Include="Assets\Scripts\GLOBAL_FLAGS.cs" />
+     <Compile Include="Assets\Scripts\GlassRoom\Dog Move.cs" />
      <Compile Include="Assets\Scripts\GlassRoom\Plate.cs" />
      <Compile Include="Assets\Scripts\Grabbable.cs" />
      <Compile Include="Assets\Scripts\GunBehaviour.cs" />
      <Compile Include="Assets\Scripts\HorizontalMovingPlatform.cs" />
      <Compile Include="Assets\Scripts\InitialLevelLoad.cs" />
+     <Compile Include="Assets\Scripts\MoveableWallBehaviour.cs" />
      <Compile Include="Assets\Scripts\NoteButton.cs" />
      <Compile Include="Assets\Scripts\PersistantPlayer.cs" />
      <Compile Include="Assets\Scripts\Phonograph.cs" />
@@ -66,6 +69,7 @@
      <Compile Include="Assets\Scripts\Room Event handlers\Room_03_Event_Handler.cs" />
      <Compile Include="Assets\Scripts\Room Event handlers\Room_07_Event_Handler.cs" />
      <Compile Include="Assets\Scripts\SceneChange.cs" />
+     <Compile Include="Assets\Scripts\SwitchBehaviour.cs" />
      <Compile Include="Assets\Scripts\VerticalMovingPlatform.cs" />
      <None Include="Assets\Custom Assets\Breakable Glass\Shaders\SimpleGlass.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
@@ -73,7 +77,7 @@
      <None Include="Assets\Custom Assets\Breakable Glass\README.txt" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/red_5_000/Documents/GitHub/_GAME_JAM_2015_WORKING/GAME JAM 2015/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Kees/Documents/GitHub/GAME_JAM_2015/GAME JAM 2015/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>

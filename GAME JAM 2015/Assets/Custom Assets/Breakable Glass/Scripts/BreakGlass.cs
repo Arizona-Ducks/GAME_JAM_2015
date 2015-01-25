@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class BreakGlass : MonoBehaviour {
 	public List<GameObject> BrokenGlassGO; // The broken glass GameObject
+   
 	GameObject BrokenGlassInstance; 
 	public bool BreakSound=true;
 	public GameObject SoundEmitter; //An object that will emit sound
@@ -28,9 +29,20 @@ public class BreakGlass : MonoBehaviour {
 	*/
 	public void BreakIt(){
 		BrokenGlassInstance = Instantiate(BrokenGlassGO[Random.Range(0,BrokenGlassGO.Count)], transform.position, transform.rotation) as GameObject;
-		
-		BrokenGlassInstance.transform.localScale = transform.lossyScale;
-		
+        if (gameObject.tag == "Duck")
+        {
+            BrokenGlassInstance.transform.Rotate(new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), Random.Range(-1, 1)), Random.Range(1, 360));
+            BrokenGlassInstance.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            for (int i = 0; i < 11; i++)
+            {
+                //rotate and force
+                BrokenGlassInstance.transform.GetChild(i).rigidbody.AddForce(new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), Random.Range(-1, 1)) * Random.Range(1000, 2500));
+            }
+        }
+        else
+        {
+            BrokenGlassInstance.transform.localScale = transform.lossyScale;
+        }
 		foreach(Transform t in BrokenGlassInstance.transform){
 			t.renderer.material = ShardMaterial;
 			t.rigidbody.mass=ShardMass;

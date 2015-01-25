@@ -4,6 +4,7 @@ using System.Collections;
 public class Room_02_Event_Handler : MonoBehaviour {
     
     public GameObject LockedDoor1;
+    public GameObject wall1, wall2;
     GLOBAL_FLAGS flags;
 
     // Use this for initialization
@@ -17,12 +18,16 @@ public class Room_02_Event_Handler : MonoBehaviour {
 	void Update () 
     {
         if (flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED == 1)
-        {
             LockedDoor1.transform.GetComponent<DoorBehaviour>().OpenDoor();
-        }
         else
-        {
             LockedDoor1.transform.GetComponent<DoorBehaviour>().CloseDoor();
-        }
+        if (flags.IS_SWITCH_PRESSED == true)
+            wall1.transform.GetComponent<MoveableWallBehaviour>().Open();
+        else
+            wall1.transform.GetComponent<MoveableWallBehaviour>().Close();
+        if (flags.IS_BUTTON_03_PRESSED == true)
+            wall2.transform.GetComponent<MoveableWallBehaviour>().Open();
+        else
+            wall2.transform.GetComponent<MoveableWallBehaviour>().Close();
 	}
 }

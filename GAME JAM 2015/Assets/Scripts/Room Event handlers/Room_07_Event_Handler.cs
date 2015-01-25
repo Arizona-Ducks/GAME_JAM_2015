@@ -5,7 +5,7 @@ public class Room_07_Event_Handler : MonoBehaviour
 {
 
     int score = 0;
-    bool finished = false;
+    DoorBehaviour door;
     int numNotes;
     int[] noteID;
     float[] delays;
@@ -19,6 +19,7 @@ public class Room_07_Event_Handler : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
+        door = GameObject.Find("LockedDoor").GetComponent<DoorBehaviour>();
         flags = GameObject.Find("First Person Duck Controller").GetComponent<GLOBAL_FLAGS>();
         numNotes = Random.Range(5, 7);
         noteID = new int[numNotes];
@@ -76,7 +77,8 @@ public class Room_07_Event_Handler : MonoBehaviour
 
         if (score == numNotes - 1)
         {
-            finished = true;
+            door.isLocked = false;
+            door.OpenDoor();
         }
 	}
 

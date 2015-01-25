@@ -12,7 +12,7 @@ public class DoorBehaviour : MonoBehaviour
     public float DoorOpenSpeed = 1.0f;
     public bool isLocked = false;
 
-    bool isOpened, isClosing, isOpenning;
+    bool isOpened, isClosed, isClosing, isOpenning;
     float currentYRotation;
     Transform doorTransform;
     Transform player;
@@ -29,6 +29,7 @@ public class DoorBehaviour : MonoBehaviour
         doorLock = gameObject.transform.FindChild("doorLock").transform.GetComponent<AudioSource>();
         isClosing = isOpenning = false;
         isOpened = StartOpened;
+        isClosed = !isOpened;
         doorTransform = gameObject.transform;
 
         if (StartOpened)
@@ -94,6 +95,7 @@ public class DoorBehaviour : MonoBehaviour
                     else//isClosed
                     {
                         isOpenning = true;
+                        isClosed = false;
                         doorOpen.Play(); 
                     }
 
@@ -116,7 +118,7 @@ public class DoorBehaviour : MonoBehaviour
             if (currentYRotation == ClosedYRotation)
             {
                 isClosing = false;
-                isOpened = false;
+                isClosed = true;
                 doorClose.Play();
                 //player.GetComponent<CharacterMotor>().enabled = true;
             }
@@ -176,14 +178,24 @@ public class DoorBehaviour : MonoBehaviour
 
     public void OpenDoor()
     {
-        isOpenning = true;
-        isClosing = false;
+        if (!isOpened)
+        {
+            isOpenning = true;
+            isClosing = false;
+
+            isClosed = isClosed ? false : isClosed;
+        }
     }
 
     public void CloseDoor()
     {
-        isClosing = true;
-        isOpenning = false;
+        if (!isClosed)
+        {
+            isClosing = true;
+            isOpenning = false;
+
+            isOpened = isOpened ? false : isOpened;
+        }
     }
 
     public void LockDoor()

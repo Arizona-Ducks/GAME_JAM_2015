@@ -4,6 +4,7 @@ using System.Collections;
 public class Room_01_Event_Handler : MonoBehaviour {
 
     public GameObject Note;
+    public GameObject GunStand;
     GLOBAL_FLAGS flags;
 
 	// Use this for initialization
@@ -13,6 +14,12 @@ public class Room_01_Event_Handler : MonoBehaviour {
 
         if (flags.IS_THE_NOTE_MISSING)
             Note.SetActive(false);
+
+        if (flags.HAS_PICKUP_THE_GUN)
+        {
+            GunStand.transform.FindChild("GeoSphere005").gameObject.SetActive(false);
+            GunStand.transform.FindChild("TimeGun").gameObject.SetActive(false);
+        }
 
         if (flags.IS_ARRIVING_FROM_ROOM_03_TO_FIRST_ROOM)
         {
@@ -33,6 +40,13 @@ public class Room_01_Event_Handler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        if (!flags.HAS_PICKUP_THE_GUN && Vector3.Distance(GunStand.transform.position, GameObject.Find("First Person Duck Controller").transform.position) < 3.5f)
+            flags.HAS_PICKUP_THE_GUN = true;
 
+        if (flags.HAS_PICKUP_THE_GUN)
+        {
+            GunStand.transform.FindChild("GeoSphere005").gameObject.SetActive(false);
+            GunStand.transform.FindChild("TimeGun").gameObject.SetActive(false);
+        }
 	}
 }

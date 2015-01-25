@@ -11,6 +11,7 @@ public class GLOBAL_FLAGS : MonoBehaviour
     //Room_01 (firstRoom)
     public bool IS_THE_NOTE_MISSING = false;
     public bool IS_ARRIVING_FROM_ROOM_03_TO_FIRST_ROOM = false;
+    public bool IS_ARRIVING_FROM_ROOM_08_TO_FIRST_ROOM = false;
 
     //Room_02
     public int NUMBER_OF_ROOM_02_BUTTONS_PRESSED = 0;

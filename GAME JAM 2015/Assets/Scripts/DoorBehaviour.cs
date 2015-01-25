@@ -44,7 +44,6 @@ public class DoorBehaviour : MonoBehaviour
         }
 
         player = GameObject.Find("First Person Duck Controller").transform;
-        //Debug.Log(gameObject.name);
 
 	}
 	
@@ -61,15 +60,12 @@ public class DoorBehaviour : MonoBehaviour
             cooldown -= Time.deltaTime;
         else if (!isLocked)
         {
-            //Debug.DrawRay(player.position, player.forward);
 
             try
             {
                 //Set Door in motion. If already in motion, set it in other direction.
                 if (Input.GetAxis("Action") > 0 && !isActionStillPressed && Vector3.Distance(doorTransform.position, player.position) < 3.5f && doorTransform.FindChild("Door").gameObject.collider.Raycast(playerLookRay, out hitInfo, 10))
                 {
-                    //Debug.Log(Vector3.Distance(doorTransform.position, player.position));
-
                     cooldown = DOOR_COOLDOWN;
                     isActionStillPressed = true;
                     //player.GetComponent<CharacterMotor>().enabled = false;

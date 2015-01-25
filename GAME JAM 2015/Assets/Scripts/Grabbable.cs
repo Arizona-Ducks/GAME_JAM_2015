@@ -15,14 +15,11 @@ public class Grabbable : MonoBehaviour {
 	void Start () 
     {
         player = GameObject.Find("First Person Duck Controller").transform;
-        //Debug.Log("Grabbable started!");
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        //Debug.DrawRay(player.FindChild("Main Camera").position, player.FindChild("Main Camera").forward);
-
         if (canGrab)
         {
             if (isActionStillPressed && Input.GetAxis("Action") <= 0)
@@ -36,7 +33,7 @@ public class Grabbable : MonoBehaviour {
                 RaycastHit hitInfo;
 
                 //if (gameObject.collider.Raycast(playerLookRay, out hitInfo, 10))
-                //    Debug.Log("Looking at ball!");
+
 
                 //"Grab" object, setting position in fron t of player and adding it as child. removing parent when letting go.
                 if (Input.GetAxis("Action") > 0 && !isActionStillPressed)

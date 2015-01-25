@@ -13,12 +13,14 @@ public class Room_07_Event_Handler : MonoBehaviour
     float totalDelay;
     NoteButton[] buttons;
     bool[] noteHasPlayed;
+    AudioSource finishedSound;
 
     GLOBAL_FLAGS flags;
 
 	// Use this for initialization
 	void Start () 
     {
+        finishedSound = GetComponent<AudioSource>();
         clock = GameObject.Find("Clock").GetComponent<AnalogClock>();
         door = GameObject.Find("LockedDoor").GetComponent<DoorBehaviour>();
         flags = GameObject.Find("First Person Duck Controller").GetComponent<GLOBAL_FLAGS>();
@@ -91,8 +93,14 @@ public class Room_07_Event_Handler : MonoBehaviour
 
         if (score == numNotes - 1)
         {
+            flags.FINISHED_PUZZLE = true;
             door.isLocked = false;
             door.OpenDoor();
+        }
+        if (flags.FINISHED_PUZZLE)
+        {
+            finishedSound.Play();
+            flags.FINISHED_PUZZLE = false;
         }
 	}
 

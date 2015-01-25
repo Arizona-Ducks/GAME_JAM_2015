@@ -7,11 +7,13 @@ public class Room_04_Event_Handler : MonoBehaviour {
     public GameObject locked_door;
     public GameObject clock;
     public GameObject phonograph;
+    AudioSource finishedSound;
 
     bool finishedPuzzle = false;
 
 	// Use this for initialization
 	void Start () {
+        finishedSound = GetComponent<AudioSource>();
         flags = GameObject.Find("First Person Duck Controller").GetComponent<GLOBAL_FLAGS>();
 
         if (flags.ROOM_04_PUZZLE_FINISHED)
@@ -41,6 +43,12 @@ public class Room_04_Event_Handler : MonoBehaviour {
                 finishedPuzzle = true;
                 locked_door.GetComponent<DoorBehaviour>().UnlockDoor();
                 locked_door.GetComponent<DoorBehaviour>().OpenDoor();
+                flags.FINISHED_PUZZLE = true;
+            }
+            if (flags.FINISHED_PUZZLE)
+            {
+                finishedSound.Play();
+                flags.FINISHED_PUZZLE = false;
             }
         }
 	}

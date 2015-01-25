@@ -10,7 +10,9 @@ public class PersistantPlayer : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.LoadLevel("MainMenu");
 	}
 }

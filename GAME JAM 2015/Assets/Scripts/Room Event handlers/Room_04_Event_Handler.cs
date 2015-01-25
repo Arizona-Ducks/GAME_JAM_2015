@@ -8,6 +8,7 @@ public class Room_04_Event_Handler : MonoBehaviour {
     public GameObject clock;
     public GameObject phonograph;
     AudioSource finishedSound;
+    bool soundPlayed = false;
 
     bool finishedPuzzle = false;
 
@@ -45,8 +46,9 @@ public class Room_04_Event_Handler : MonoBehaviour {
                 locked_door.GetComponent<DoorBehaviour>().OpenDoor();
                 flags.FINISHED_PUZZLE = true;
             }
-            if (flags.FINISHED_PUZZLE)
+            if (flags.FINISHED_PUZZLE && !soundPlayed)
             {
+                soundPlayed = true;
                 finishedSound.Play();
                 flags.FINISHED_PUZZLE = false;
             }

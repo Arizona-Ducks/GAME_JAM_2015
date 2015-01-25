@@ -4,6 +4,8 @@ using System.Collections;
 public class Room_02_Event_Handler : MonoBehaviour {
 
     AudioSource finishedSound;
+    bool soundPlayed = false;
+    bool soundPlayed2 = false;
     public GameObject lockedDoor1, lockedDoor2;
     public GameObject wall1, wall2;
     GLOBAL_FLAGS flags;
@@ -22,14 +24,16 @@ public class Room_02_Event_Handler : MonoBehaviour {
         if (flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED == 1)
         {
             lockedDoor1.transform.GetComponent<DoorBehaviour>().OpenDoor();
-            flags.FINISHED_PUZZLE = true;
+            if(!soundPlayed)
+                flags.FINISHED_PUZZLE = true;
         }
         else
             lockedDoor1.transform.GetComponent<DoorBehaviour>().CloseDoor();
         if (flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED == 2)
         {
             lockedDoor2.transform.GetComponent<DoorBehaviour>().OpenDoor();
-            flags.FINISHED_PUZZLE = true;
+            if(!soundPlayed2)
+                flags.FINISHED_PUZZLE = true;
         }
         else
             lockedDoor2.transform.GetComponent<DoorBehaviour>().CloseDoor();
@@ -43,6 +47,10 @@ public class Room_02_Event_Handler : MonoBehaviour {
             wall2.transform.GetComponent<MoveableWallBehaviour>().Close();
         if (flags.FINISHED_PUZZLE)
         {
+            if(flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED == 1)
+                soundPlayed = true;
+            else if(flags.NUMBER_OF_ROOM_02_BUTTONS_PRESSED == 2)
+                soundPlayed2 = true;
             finishedSound.Play();
             flags.FINISHED_PUZZLE = false;
         }

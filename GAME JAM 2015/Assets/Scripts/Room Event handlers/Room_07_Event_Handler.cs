@@ -6,6 +6,7 @@ public class Room_07_Event_Handler : MonoBehaviour
     AnalogClock clock;
     int score = 0;
     DoorBehaviour door;
+    bool soundPlayed = false;
     int numNotes;
     int[] noteID;
     float[] delays;
@@ -97,8 +98,9 @@ public class Room_07_Event_Handler : MonoBehaviour
             door.isLocked = false;
             door.OpenDoor();
         }
-        if (flags.FINISHED_PUZZLE)
+        if (flags.FINISHED_PUZZLE && !soundPlayed)
         {
+            soundPlayed = true;
             finishedSound.Play();
             flags.FINISHED_PUZZLE = false;
         }

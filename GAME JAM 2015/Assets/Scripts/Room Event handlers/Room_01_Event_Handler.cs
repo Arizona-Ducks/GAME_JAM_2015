@@ -6,6 +6,7 @@ public class Room_01_Event_Handler : MonoBehaviour {
     public GameObject Note;
     public GameObject GunStand;
     AudioSource finishedSound;
+    bool soundPlayed = false;
     GLOBAL_FLAGS flags;
 
 	// Use this for initialization
@@ -38,8 +39,9 @@ public class Room_01_Event_Handler : MonoBehaviour {
             player.Translate(spawn.position - player.position, Space.World);
             flags.IS_ARRIVING_FROM_ROOM_08_TO_FIRST_ROOM = false;
         }
-        if (flags.FINISHED_PUZZLE)
+        if (flags.FINISHED_PUZZLE && !soundPlayed)
         {
+            soundPlayed = true;
             finishedSound.Play();
             flags.FINISHED_PUZZLE = false;
         }

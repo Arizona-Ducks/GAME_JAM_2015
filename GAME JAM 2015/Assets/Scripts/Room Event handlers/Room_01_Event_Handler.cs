@@ -40,7 +40,7 @@ public class Room_01_Event_Handler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        if (!flags.HAS_PICKUP_THE_GUN && Vector3.Distance(GunStand.transform.position, GameObject.Find("First Person Duck Controller").transform.position) < 3.5f)
+        if (!flags.HAS_PICKUP_THE_GUN && Vector3.Distance(GunStand.transform.position, GameObject.Find("First Person Duck Controller").transform.position) < 1.5f)
             flags.HAS_PICKUP_THE_GUN = true;
 
         if (flags.HAS_PICKUP_THE_GUN)
